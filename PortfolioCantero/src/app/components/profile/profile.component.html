@@ -1,0 +1,121 @@
+<div class="card mat-card" id="first-card">
+    <div id="profile-background"><img id="info-back-img" src="https://cdn.pixabay.com/photo/2019/04/10/11/56/watercolour-4116932_960_720.png"></div>
+    <div id="info" style="padding: 16px">
+      <div id="info-img">
+        <img id="info-user-img" class="profile-image" src="https://img.freepik.com/vector-gratis/hombre-muestra-gesto-gran-idea_10045-637.jpg?t=st=1651345285~exp=1651345885~hmac=6d9a564a8252726920e7009aeb160dc92c88948c3a04a0afdc7115ae159faac2&w=740">
+        <div class="btn-edit"><a href="#" class="btn-right"><i class="fa fa-pen" onclick="showEditProfileModal()"></i></a></div>
+      </div>
+      <div id="info-data">
+        <div>
+          <h1 id="info-name">Pablo Javier Cantero</h1>
+          <div><span id="info-position">Desarrollador Web Full Stack</span> en <span id="info-company">Argentina Programa</span></div>
+          <div id="info-contact">
+            <span id="info-ubication">Rosario (Argentina) </span>
+            <span><a href="#">Información de contacto</a></span>
+          </div>
+        </div>
+        <ul id="info-details">
+          <li><a href="#">
+            <img id="info-company-img" src="https://cdn-sp.radionacional.com.ar/wp-content/uploads/2021/12/Diseno-sin-titulo-1-1.png">
+            <h2 id="info-company-name">Argentina Programa</h2>
+          </a></li>
+          <li><a href="#">
+            <img id="info-school-img" src="https://sites.google.com/site/49teaurquiza/_/rsrc/1472872996503/home/escuela2.jpg?height=232&width=400">
+            <h2 id="info-school-name">Escuela Superior J.J. Urquiza</h2>
+          </a></li>
+        </ul>
+      </div>
+      <div id="info-actions">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tengoInteresEn">Tengo interés en</button>
+        <button type="button" class="btn btn-primary">Contacto</button>
+        <button type="button" class="btn btn-primary">Más</button>
+      </div>
+    </div>
+</div>
+
+<div class="card mat-card">
+  <div class="card-titles">
+      <h2 class="card-header">Acerca de mi</h2>
+      <div class="btn-edit"><a href="#" class="btn-right"><i class="fa fa-pen" onclick="showEditAboutModal()"></i></a></div>
+  </div>    
+  <div id="about">
+    Estudiante de desarrollo web Full Stack en Argentina Programa.
+  </div>
+</div>
+
+<!-- Modal Edit Profile -->
+<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar perfil</h5>
+        <button type="button" class="close" onclick="$('#editProfile').modal('hide');" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+              <label for="inputName">Nombre</label>
+              <input type="text" class="form-control" id="inputName" placeholder="Ingrese su nombre">
+          </div>
+          <div class="form-group">
+              <label for="inputPosition">Posición</label>
+              <input type="text" class="form-control" id="inputPosition" placeholder="Tu posicion">
+          </div>
+          <div class="form-group">
+              <label for="inputCompany">Compañia</label>
+              <input type="text" class="form-control" id="inputCompany" placeholder="Ingrese la compania">
+          </div>
+          <div class="form-group">
+              <label for="inputUbication">Ubicación</label>
+              <input type="text" class="form-control" id="inputUbication" placeholder="Ingrese su ubicacion">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="$('#editProfile').modal('hide');" >Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="saveEditProfileModal()">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal Tengo interes en-->
+<div class="modal fade" id="tengoInteresEn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+  <h5 class="modal-title" id="exampleModalLabel">Tengo interes en</h5>
+  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+  la mecanica cuantica
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+  <button type="button" class="btn btn-primary">Guardar cambios</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Modal Edit About -->
+<div class="modal fade" id="editAbout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Editar acerca de</h5>
+        <button type="button" class="close" onclick="$('#editAbout').modal('hide');"  aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+              <label for="inputAbout">Sobre mi</label>
+              <textarea type="text" class="form-control" id="inputAbout" placeholder="Escribe sobre ti"></textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" onclick="$('#editAbout').modal('hide');" >Cerrar</button>
+        <button type="button" class="btn btn-primary" onclick="saveEditAboutModal()">Guardar cambios</button>
+      </div>
+    </div>
+  </div>
+</div>
