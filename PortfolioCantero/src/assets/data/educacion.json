@@ -1,0 +1,13 @@
+{
+    "education": [
+		{
+			"school": "Escuela 'Para la vida'",
+			"title": "Bachiller con orientacion a economia y administracion",
+			"img": "https://sites.google.com/site/49teaurquiza/_/rsrc/1472872996503/home/escuela2.jpg?height=232&width=400",
+			"career": "EEMPA",
+			"score": 8,
+			"start": "2012",
+			"end": "2014"
+		}
+	]
+}

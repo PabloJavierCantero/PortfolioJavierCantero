@@ -6,11 +6,31 @@
         </div>
         <div>
           <ul class="items-list" id="expList">
+            <li>
+              <div class="data-container">
+                <div class="logo-image-container">
+                  <img class="logo-image" [src] = "miExperiencia.img">
+                </div>
+                <div class="list-info">
+                  <div>
+                    <h3>{{miExperiencia.position}}</h3>
+                    <p>{{miExperiencia.company}}</p>
+                    <p>{{miExperiencia.mode}}</p>
+                    <p>{{miExperiencia.start}} - {{miExperiencia.end}}</p>
+                    <p>{{miExperiencia.place}}</p>
+                  </div>
+
+                </div>
+
+              </div>
+        
+
+            </li>
             
           </ul>
         </div>
       </div>
-    </div>
+</div>
 
     <!-- Modal New Experience -->
 <div class="modal fade" id="newExp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

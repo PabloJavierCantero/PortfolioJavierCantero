@@ -1,0 +1,19 @@
+{"habilidadesTecnologicas": [
+    {
+        "name": "Resolución de problemas",
+        "progress": 75
+    },
+    {
+        "name": "Angular",
+        "progress": 70
+    },
+    {
+        "name": "Javascript",
+        "progress": 80
+    },
+    {
+        "name": "Spring Boot",
+        "progress": 75
+    }
+]
+}
