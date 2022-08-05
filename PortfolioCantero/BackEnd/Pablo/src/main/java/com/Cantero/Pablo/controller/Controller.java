@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -22,27 +23,35 @@ public class Controller {
     private PersonaService persoServ;
     
     
-    @PostMapping("/nueva/persona")
+    @PostMapping("/persona/crear")
     public void agregarPersona(@RequestBody Persona pers){
         persoServ.crearPersona(pers);
     }
     
-    @GetMapping ("/ver/personas")
+    @GetMapping ("/persona/ver")
     @ResponseBody
     public List<Persona> verPersonas(){
      return persoServ.verPersonas();
     
     }
     
-    @DeleteMapping ("borrar/{id}")
+    @DeleteMapping ("/persona/borrar/{id}")
     public void borrarPersona(@PathVariable Long id){
         persoServ.borrarPersona(id);
     
     }
     
-    @PutMapping ("editar/persona")
-    public void editarPersona(@RequestBody Persona pers){
-     persoServ.editarPersona(pers);
+    @PutMapping ("/persona/editar/{id}")
+    public void editarPersona(@PathVariable Long id,
+                              @RequestParam ("nombre") String nuevoNombre,
+                              @RequestParam ("apellido") String nuevoApellido){
+     
+        Persona persona = persoServ.buscarPersona(id);
+        persona.setNombre(nuevoNombre);
+        persona.setApellido(nuevoApellido);
+        
+        persoServ.crearPersona(persona);
+        
     }
     
 }
