@@ -20,9 +20,9 @@ public class JwtProvider {
     
     private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
     
-    @Value("$(jwt.secret)")
+    @Value("${jwt.secret}")
     private String secret;
-    @Value("$(jwt.expiration)")
+    @Value("${jwt.expiration}")
     private int expiration;
     
     public String generateToken(Authentication authentication){
@@ -32,14 +32,11 @@ public class JwtProvider {
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(new Date().getTime() + expiration*1000))
                 .signWith(SignatureAlgorithm.HS512, secret).compact();
-                
-    
     }
     
     public String getNombreUsuarioFromToken(String token){
         
         return Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody().getSubject();
-    
     }
     
     public boolean validateToken(String token){
@@ -64,10 +61,5 @@ public class JwtProvider {
             logger.error("Signature Invalid");
         }
         return false;       
-    
-    
     }
-    
-    
-    
 }

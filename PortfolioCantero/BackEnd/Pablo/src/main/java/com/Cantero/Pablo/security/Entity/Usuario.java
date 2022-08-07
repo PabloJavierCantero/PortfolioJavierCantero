@@ -1,6 +1,7 @@
 
 package com.Cantero.Pablo.security.Entity;
 
+
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -23,11 +24,14 @@ public class Usuario {
     
     @NotNull
     private String nombre;
+    
     @NotNull
     @Column (unique = true)
     private String nombreUsuario;
+    
     @NotNull
     private String email;
+    
     @NotNull
     private String password;
     
@@ -35,7 +39,8 @@ public class Usuario {
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn (name = "usuario_id"), inverseJoinColumns = @JoinColumn (name = "rol_id"))
     private Set<Rol> roles = new HashSet<>();
     
-    public Usuario () {}
+    public Usuario () {
+    }
 
     public Usuario(String nombre, String nombreUsuario, String email, String password) {
         this.nombre = nombre;
@@ -91,7 +96,4 @@ public class Usuario {
     public void setRoles(Set<Rol> roles) {
         this.roles = roles;
     }
-    
-    
-    
 }

@@ -22,11 +22,5 @@ public class UserDetailsImp implements UserDetailsService {
         return UsuarioPrincipal.build(usuario);
         
     }
-    
-    
-    
-    
-    
-    
-    
+  
 }
