@@ -13,6 +13,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './components/login/login.component';
 import { AppRoutingModule } from './app-routing.module';
 import { InicioComponent } from './components/inicio/inicio.component';
+import { FormsModule } from '@angular/forms';
+import { interceptorProvider } from './service/interceptor-service';
 
 @NgModule({
   declarations: [
@@ -29,9 +31,10 @@ import { InicioComponent } from './components/inicio/inicio.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [PortfolioService],
+  providers: [PortfolioService, interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

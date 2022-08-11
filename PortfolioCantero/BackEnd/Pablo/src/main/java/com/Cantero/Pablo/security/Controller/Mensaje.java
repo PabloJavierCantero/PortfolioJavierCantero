@@ -10,7 +10,8 @@ public class Mensaje {
         this.mensaje = mensaje;
     }
     
-    public Mensaje(){}
+    public Mensaje(){
+    }
 
     public String getMensaje() {
         return mensaje;

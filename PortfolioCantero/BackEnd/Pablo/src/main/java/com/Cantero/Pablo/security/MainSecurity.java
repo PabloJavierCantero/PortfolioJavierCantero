@@ -34,7 +34,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
     @Bean
     public JwtTokenFilter jwtTokenFilter(){
         return new JwtTokenFilter();
- }
+    }
     
     @Bean
     public PasswordEncoder passwordEncoder(){
@@ -43,7 +43,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable().authorizeRequests().antMatchers("/auth''").permitAll()
+        http.cors().and().csrf().disable().authorizeRequests().antMatchers("/auth/**").permitAll()
         .anyRequest().authenticated().and().exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
         .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); 
         

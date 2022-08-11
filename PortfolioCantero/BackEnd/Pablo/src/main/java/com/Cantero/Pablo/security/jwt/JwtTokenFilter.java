@@ -17,7 +17,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 public class JwtTokenFilter extends OncePerRequestFilter {
 
-    private final static Logger loger = LoggerFactory.getLogger(JwtProvider.class);
+    private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
     @Autowired
     JwtProvider jwtProvider;
@@ -37,7 +37,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
             }
         } catch (UsernameNotFoundException e) {
-            loger.error("Method doFilterInternal Failed");
+            logger.error("Method doFilterInternal Failed");
         }
 
         filterChain.doFilter(request, response);
@@ -45,9 +45,9 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     private String getToken(HttpServletRequest request) {
         String header = request.getHeader("Authorization");
-        if (header != null && header.startsWith("Bearer")) {
+        if (header != null && header.startsWith("Bearer")) 
             return header.replace("Bearer", "");
-        }
+        
         return null;
     }
 }
