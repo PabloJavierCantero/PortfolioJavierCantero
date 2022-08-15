@@ -1,18 +1,38 @@
-<div class="card mat-card">     
-    <div id="education">
-      <div class="card-titles">
-        <h2 class="card-header">Educación</h2>
-        <div class="btn-edit"><a href="#" class="btn-right"><i class="fa fa-plus" onclick="showNewEduModal()"></i></a></div>
-      </div>
-      <div>
-        <ul class="items-list" id="eduList">
-          
-        </ul>
-      </div>
-    </div>
+<div class="row">
+  <h1>Educacion</h1>
+  <div class="col-lg-2">
+      <button type="button" class="btn btn-dark" routerLink="/nuevaedu" *ngIf="isLogged">
+          Agregar Educacion
+      </button>
+  </div>
+
+  <div class="col lg 1"></div>
+  <div class="col-lg-11">
+      <table class="table">
+          <tbody>
+              <tr *ngFor="let Educacion of educacion">
+                  <td>
+                      <h2>{{Educacion.nombreE}}</h2>
+                  </td>
+                  <td>{{Educacion.descripcionE}}</td>
+                  <td *ngIf="isLogged">
+                      <button class="btn btn-light" routerLink="/editedu/{{Educacion.id}}">
+                          <i class="bi bi-pencil-fill"></i> EDITAR</button>
+                  </td>
+                  <td *ngIf="isLogged">
+                      <button class="btn btn-danger" (click)="delete(Educacion.id)">
+                          <i class="bi bi-trash-fill"></i> BORRAR</button>
+                  </td>
+              </tr>
+          </tbody>
+      </table>
+  </div>
+
 </div>
 
-<!-- Modal New Education -->
+
+
+<!-- Modal New Education
 <div class="modal fade" id="newEdu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -59,8 +79,8 @@
     </div>
   </div>
 </div>
-
-<!-- Modal Edit Education -->
+ -->
+<!-- Modal Edit Education 
 <div class="modal fade" id="editEdu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -107,3 +127,4 @@
     </div>
   </div>
 </div>
+-->
