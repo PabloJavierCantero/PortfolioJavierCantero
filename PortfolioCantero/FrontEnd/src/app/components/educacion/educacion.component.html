@@ -1,130 +1,88 @@
-<div class="row">
-  <h1>Educacion</h1>
-  <div class="col-lg-2">
-      <button type="button" class="btn btn-dark" routerLink="/nuevaedu" *ngIf="isLogged">
-          Agregar Educacion
-      </button>
+<div class="card mat-card">  
+  <div id="education">
+    <div class="card-titles">
+      <h2 class="card-header">Educación</h2>
+      <div class="btn-edit">
+        <button type="button" class="btn btn-right" data-toggle="modal" data-target="#myModalEduc" *ngIf="isLogged">
+        <i class="fa fa-plus"></i>
+        </button>
+      </div>      
+    </div> 
+
+    
+    <div class="col-lg-12">
+     <table class="table">
+      <tbody>
+      <tr class="items-list" id="eduList" *ngFor="let Educacion of educacion">
+        <td>
+          <h5>Institucion: </h5>
+          <p>{{Educacion.nombreE}}</p>                    
+        </td>
+        <td>
+          <h5>Titulo: </h5>
+          <p>{{Educacion.descripcionE}}</p>
+        </td>
+        <td>
+          <h5>Periodo: </h5>
+          <p>{{Educacion.finalE}}</p>        
+        </td>
+        <td class="btn-edit" *ngIf="isLogged">
+          <button type="button" class="btn btn-right" routerLink="/editedu/{{Educacion.id}}">
+          <i class="bi bi-pencil-fill"></i></button>
+        </td>
+        <td class="btn-edit" *ngIf="isLogged">
+          <button class="btn btn-right" (click)="delete(Educacion.id)">
+          <i class="bi bi-trash-fill"></i></button>   
+        </td>           
+      </tr>
+    </tbody>              
+
+      
+    </table>
+   </div>
+    
+    
   </div>
 
-  <div class="col lg 1"></div>
-  <div class="col-lg-11">
-      <table class="table">
-          <tbody>
-              <tr *ngFor="let Educacion of educacion">
-                  <td>
-                      <h2>{{Educacion.nombreE}}</h2>
-                  </td>
-                  <td>{{Educacion.descripcionE}}</td>
-                  <td *ngIf="isLogged">
-                      <button class="btn btn-light" routerLink="/editedu/{{Educacion.id}}">
-                          <i class="bi bi-pencil-fill"></i> EDITAR</button>
-                  </td>
-                  <td *ngIf="isLogged">
-                      <button class="btn btn-danger" (click)="delete(Educacion.id)">
-                          <i class="bi bi-trash-fill"></i> BORRAR</button>
-                  </td>
-              </tr>
-          </tbody>
-      </table>
-  </div>
 
-</div>
+
+</div> 
 
 
 
-<!-- Modal New Education
-<div class="modal fade" id="newEdu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!--Modal NewEducacion-->
+<div class="modal fade" id="myModalEduc" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar educacion</h5>
-        <button type="button" class="close" onclick="$('#newEdu').modal('hide');" aria-label="Close">
+        <h5 class="modal-title" id="myModalEduc">Agregar Educacion</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+        <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
           <div class="form-group">
-              <label for="inputSchool">Escuela</label>
-              <input type="text" class="form-control" id="inputSchool" placeholder="Enter school">
+              <label for="nombreE">Nombre de la institucion: </label>
+              <input type="text" class="form-control" id="nombreE" name="nombreE" [(ngModel)]="nombreE" required>
           </div>
           <div class="form-group">
-              <label for="inputTitle">Titulo</label>
-              <input type="text" class="form-control" id="inputTitle" placeholder="Enter title">
+              <label for="descripcionE">Titulo: </label>
+              <input type="text" class="form-control" id="descripcionE" name="descripcionE" [(ngModel)]="descripcionE" required>
           </div>
           <div class="form-group">
-              <label for="inputSchoolImage">Imagen</label>
-              <input type="text" class="form-control" id="inputSchoolImage" placeholder="Enter image">
-          </div>
-          <div class="form-group">
-              <label for="inputCareer">Carrera</label>
-              <input type="text" class="form-control" id="inputCareer" placeholder="Enter career">
-          </div>
-          <div class="form-group">
-              <label for="inputScore">GPA</label>
-              <input type="text" class="form-control" id="inputScore" placeholder="Enter score">
-          </div>
-          <div class="form-group">
-              <label for="inputSchoolInitial">Fecha Inicio</label>
-              <input type="text" class="form-control" id="inputSchoolInitial" placeholder="Enter initial date">
-          </div>
-          <div class="form-group">
-              <label for="inputSchoolEnd">Fecha Final</label>
-              <input type="text" class="form-control" id="inputSchoolEnd" placeholder="Enter end date">
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" onclick="$('#newEdu').modal('hide');" >Cerrar</button>
-        <button type="button" class="btn btn-primary" onclick="saveNewEduModal()">Guardar cambios</button>
-      </div>
+            <label for="finalE">Periodo: </label>
+            <input type="text" class="form-control" id="finalE" name="finalE" [(ngModel)]="finalE" required>
+        </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Agregar Educacion</button>
+          </div>         
+        </form>
+      </div>      
     </div>
   </div>
 </div>
- -->
-<!-- Modal Edit Education 
-<div class="modal fade" id="editEdu" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar educacion</h5>
-        <button type="button" class="close" onclick="$('#editEdu').modal('hide');" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <div class="form-group">
-              <label for="inputSchoolEdit">Escuela</label>
-              <input type="text" class="form-control" id="inputSchoolEdit" placeholder="Enter school" readonly>
-          </div>
-          <div class="form-group">
-              <label for="inputTitleEdit">Titulo</label>
-              <input type="text" class="form-control" id="inputTitleEdit" placeholder="Enter title">
-          </div>
-          <div class="form-group">
-              <label for="inputSchoolImageEdit">Imagen</label>
-              <input type="text" class="form-control" id="inputSchoolImageEdit" placeholder="Enter image">
-          </div>
-          <div class="form-group">
-              <label for="inputCareerEdit">Carrera</label>
-              <input type="text" class="form-control" id="inputCareerEdit" placeholder="Enter career">
-          </div>
-          <div class="form-group">
-              <label for="inputScoreEdit">GPA</label>
-              <input type="text" class="form-control" id="inputScoreEdit" placeholder="Enter score">
-          </div>
-          <div class="form-group">
-              <label for="inputSchoolInitialEdit">Fecha Inicio</label>
-              <input type="text" class="form-control" id="inputSchoolInitialEdit" placeholder="Enter initial date">
-          </div>
-          <div class="form-group">
-              <label for="inputSchoolEndEdit">Fecha Final</label>
-              <input type="text" class="form-control" id="inputSchoolEndEdit" placeholder="Enter end date">
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" onclick="$('#editEdu').modal('hide');" >Cerrar</button>
-        <button type="button" class="btn btn-primary" onclick="saveEditEduModal($('#inputSchoolEdit').val())">Guardar cambios</button>
-      </div>
-    </div>
-  </div>
-</div>
--->
+

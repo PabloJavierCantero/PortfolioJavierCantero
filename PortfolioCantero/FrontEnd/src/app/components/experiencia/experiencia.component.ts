@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Experiencia } from 'src/app/model/experiencia';
 import { SExperienciaService } from 'src/app/service/s-experiencia.service';
 import { TokenService } from 'src/app/service/token.service';
@@ -12,9 +13,12 @@ import { TokenService } from 'src/app/service/token.service';
 export class ExperienciaComponent implements OnInit {
 
   expe: Experiencia[] = [];
+  nombreE: string;
+  descripcionE: string;
+  periodoE: string;
 
 
-  constructor(private sExperiencia: SExperienciaService, private tokenService: TokenService) { }
+  constructor(private sExperiencia: SExperienciaService, private tokenService: TokenService, private router: Router) { }
 
   isLogged = false;
 
@@ -39,6 +43,17 @@ export class ExperienciaComponent implements OnInit {
         alert("No se pudo eliminar la experiencia");}
       )
     }
+  }
+
+  onCreate(): void{
+    const expe = new Experiencia(this.nombreE, this.descripcionE, this.periodoE);
+    this.sExperiencia.save(expe).subscribe(data =>{
+      alert("Experiencia agregada");
+      this.router.navigate(['']);      
+    }, err =>{
+      alert("No se pudo agregar la experiencia");
+      this.router.navigate(['']);
+    })    
   }
 }
 

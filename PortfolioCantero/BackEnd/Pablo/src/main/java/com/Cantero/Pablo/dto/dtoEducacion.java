@@ -10,13 +10,15 @@ public class dtoEducacion {
     private String nombreE;
     @NotBlank
     private String descripcionE;
+    private String finalE;
 
     public dtoEducacion() {
     }
 
-    public dtoEducacion(String nombreE, String descripcionE) {
+    public dtoEducacion(String nombreE, String descripcionE, String finalE) {
         this.nombreE = nombreE;
         this.descripcionE = descripcionE;
+        this.finalE = finalE;
     }
 
     public String getNombreE() {
@@ -33,6 +35,14 @@ public class dtoEducacion {
 
     public void setDescripcionE(String descripcionE) {
         this.descripcionE = descripcionE;
+    }
+
+    public String getFinalE() {
+        return finalE;
+    }
+
+    public void setFinalE(String finalE) {
+        this.finalE = finalE;
     }
     
     

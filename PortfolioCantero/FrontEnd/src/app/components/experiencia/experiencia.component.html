@@ -1,129 +1,82 @@
-<div class="row">
-  <h1>Experiencia laboral</h1>
-  <div class="col-lg-2">
-      <button type="button" class="btn btn-dark" routerLink="/nuevaexp" *ngIf="isLogged">
-          Nueva Experiencia
-      </button>
-  </div>
+<!--Experiencia-->
+<div class="card mat-card">
+  <div id="experiencie">
+    <div class="card-titles">
+      <h2 class="card-header">Experiencia</h2>
+      <div class="btn-edit">
+        <button type="button" class="btn btn-right" data-toggle="modal" data-target="#myModalExp" *ngIf="isLogged">
+         <i class="fa fa-plus"></i>  
+        </button>       
+      </div>
+    </div>
 
-  <div class="col lg 1"></div>
-  <div class="col-lg-11">
+    <div class="col-lg-12">
       <table class="table">
-          <tbody>
-              <tr *ngFor="let Experiencia of expe">
-                  <td>
-                      <h2>{{Experiencia.nombreE}}</h2>
-                  </td>
-                  <td>{{Experiencia.descripcionE}}</td>
-                  <td *ngIf="isLogged">
-                      <button class="btn btn-light" routerLink="/editexp/{{Experiencia.id}}">
-                          <i class="bi bi-pencil-fill"></i> EDITAR</button>
-                  </td>
-                  <td *ngIf="isLogged">
-                      <button class="btn btn-danger" (click)="delete(Experiencia.id)">
-                          <i class="bi bi-trash-fill"></i> BORRAR</button>
-                  </td>
-              </tr>
-          </tbody>
+        <tbody>
+          <tr class="items-list" id="expList" *ngFor="let Experiencia of expe">
+            <td>
+              <h5>Puesto:</h5>
+              <p>{{ Experiencia.nombreE }}</p>
+            </td>
+            <td>
+              <h5>Descripcion:</h5>
+              <p>{{ Experiencia.descripcionE }}</p>
+            </td>
+            <td>
+              <h5>Periodo:</h5>
+              <p>{{Experiencia.periodoE}}</p>
+            </td>
+            <td class="btn-edit" *ngIf="isLogged">
+
+              <button type="button" class="btn btn-right" routerLink="/editexp/{{Experiencia.id}}">
+               <i class="bi bi-pencil-fill"></i></button>            
+            
+            </td>
+            <td class="btn-edit" *ngIf="isLogged">
+              <button class="btn btn-right" (click)="delete(Experiencia.id)">
+                <i class="bi bi-trash-fill"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
       </table>
+    </div>
   </div>
-
 </div>
 
-    <!-- Modal New Experience -->
-    <!--
-<div class="modal fade" id="newExp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--Modal NewExperiencia-->
+<div class="modal fade" id="myModalExp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Agregar experiencia</h5>
-        <button type="button" class="close" onclick="$('#newExp').modal('hide');" aria-label="Close">
+        <h5 class="modal-title" id="myModalExp">Agregar Experiencia</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+        <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
           <div class="form-group">
-              <label for="inputPositionExp">Posicion</label>
-              <input type="text" class="form-control" id="inputPositionExp" placeholder="Enter position">
+              <label for="nombreE">Puesto: </label>
+              <input type="text" class="form-control" id="nombreE" name="nombreE" [(ngModel)]="nombreE" required>
           </div>
           <div class="form-group">
-              <label for="inputCompanyExp">Compania</label>
-              <input type="text" class="form-control" id="inputCompanyExp" placeholder="Enter company">
+              <label for="descripcionE">Descripcion: </label>
+              <input type="text" class="form-control" id="descripcionE" name="descripcionE" [(ngModel)]="descripcionE" required>
           </div>
           <div class="form-group">
-              <label for="inputImgExp">Imagen</label>
-              <input type="text" class="form-control" id="inputImgExp" placeholder="Enter image">
-          </div>
-          <div class="form-group">
-              <label for="inputModeExp">Modo</label>
-              <input type="text" class="form-control" id="inputModeExp" placeholder="Enter Mode">
-          </div>
-          <div class="form-group">
-              <label for="inputInitialExp">Fecha Inicio</label>
-              <input type="text" class="form-control" id="inputInitialExp" placeholder="Enter initial date">
-          </div>
-          <div class="form-group">
-              <label for="inputEndExp">Fecha Fin</label>
-              <input type="text" class="form-control" id="inputEndExp" placeholder="Enter end date">
-          </div>
-          <div class="form-group">
-              <label for="inputTimeExp">Tiempo en el trabajo</label>
-              <input type="text" class="form-control" id="inputTimeExp" placeholder="Enter time in position">
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" onclick="$('#newExp').modal('hide');" >Cerrar</button>
-        <button type="button" class="btn btn-primary" onclick="saveNewExpModal()">Guardar cambios</button>
-      </div>
+            <label for="periodoE">Periodo: </label>
+            <input type="text" class="form-control" id="periodoE" name="periodoE" [(ngModel)]="periodoE" required>
+        </div>          
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Agregar Experiencia</button>
+          </div>         
+        </form>
+      </div>      
     </div>
   </div>
 </div>
--->
-<!-- Modal Edit Experience 
-<div class="modal fade" id="editExp" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar experiencia</h5>
-        <button type="button" class="close" onclick="$('#editExp').modal('hide');" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          <div class="form-group">
-              <label for="inputCompanyExpEdit">Compania</label>
-              <input type="text" class="form-control" id="inputCompanyExpEdit" placeholder="Enter company" readonly>
-          </div>
-          <div class="form-group">
-              <label for="inputPositionExpEdit">Posicion</label>
-              <input type="text" class="form-control" id="inputPositionExpEdit" placeholder="Enter position">
-          </div>
-          <div class="form-group">
-              <label for="inputImgExpEdit">Imagen</label>
-              <input type="text" class="form-control" id="inputImgExpEdit" placeholder="Enter image">
-          </div>
-          <div class="form-group">
-              <label for="inputModeExpEdit">Modo</label>
-              <input type="text" class="form-control" id="inputModeExpEdit" placeholder="Enter Mode">
-          </div>
-          <div class="form-group">
-              <label for="inputInitialExpEdit">Fecha Inicio</label>
-              <input type="text" class="form-control" id="inputInitialExpEdit" placeholder="Enter initial date">
-          </div>
-          <div class="form-group">
-              <label for="inputEndExpEdit">Fecha Fin</label>
-              <input type="text" class="form-control" id="inputEndExpEdit" placeholder="Enter end date">
-          </div>
-          <div class="form-group">
-              <label for="inputTimeExpEdit">Tiempo en el trabajo</label>
-              <input type="text" class="form-control" id="inputTimeExpEdit" placeholder="Enter time in position">
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" onclick="$('#editExp').modal('hide');" >Cerrar</button>
-        <button type="button" class="btn btn-primary" onclick="saveEditExpModal($('#inputCompanyExpEdit').val())">Guardar cambios</button>
-      </div>
-    </div>
-  </div>
-</div>
--->
+
+

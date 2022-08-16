@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Educacion } from 'src/app/model/educacion';
 import { EducacionService } from 'src/app/service/educacion.service';
 import { TokenService } from 'src/app/service/token.service';
@@ -12,8 +13,13 @@ import { TokenService } from 'src/app/service/token.service';
 export class EducacionComponent implements OnInit {
 
   educacion: Educacion[] = [];
+  nombreE: string;
+  descripcionE: string;
+  finalE: string;
+  
+  
 
-  constructor(private educacionS: EducacionService, private tokenService: TokenService) { }
+  constructor(private educacionS: EducacionService, private tokenService: TokenService, private router: Router) { }
 
   isLogged = false;
 
@@ -25,6 +31,8 @@ export class EducacionComponent implements OnInit {
     } else {
       this.isLogged = false;
     }
+
+    
     
   }
 
@@ -40,5 +48,18 @@ export class EducacionComponent implements OnInit {
       )
     }
   }
+
+  onCreate(): void{
+    const educacion = new Educacion(this.nombreE, this.descripcionE, this.finalE);
+    this.educacionS.save(educacion).subscribe(data =>{
+      alert("Educacion creada correctamente");
+      this.router.navigate(['']);
+    }, err =>{
+      alert("Fallo la creacion de nueva educacion");
+      this.router.navigate(['']);
+    })
+  }
+
+  
 
 }
