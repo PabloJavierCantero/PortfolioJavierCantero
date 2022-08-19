@@ -1,36 +1,30 @@
 <div class="card mat-card" id="first-card">
     <div id="profile-background">
-      <img id="info-back-img" [src]="miPortfolio.backImage">
+      <img id="info-back-img" src="https://cdn.pixabay.com/photo/2019/04/10/11/56/watercolour-4116932_960_720.png">
     </div>
     <div id="info" style="padding: 16px">
       <div id="info-img">
-        <img id="info-user-img" class="profile-image" [src]="miPortfolio.image"></div>
-        <div class="btn-edit"><a href="#" class="btn-right"><i class="fa fa-pen" onclick="showEditProfileModal()"></i></a></div>
+        <img id="info-user-img" class="profile-image" [src]="Person.imgPerfil"></div>
+        <div class="btn-edit">
+          <button type="button" class="btn btn-right" data-toggle="modal" data-target="#myModalPerson" *ngIf="isLogged">
+          <i class="fa fa-plus"></i>
+          </button></div>
     </div>
 
     <div id="info-data">
       <div>
-          <h1 id="info-name">{{miPortfolio.fullName}}</h1>         
-          <div><span id="info-position">{{miPortfolio.position}}</span></div>
+          <h1>{{Person.fullname}}</h1>         
+          <div><span>{{Person.posicion}}</span></div>
           <div id="info-contact">
-            <span id="info-ubication">{{miPortfolio.ubication}}</span>            
-          </div>
-          <div><span><a href="#">Información de contacto</a></span></div>
-      </div>
-        
-      <ul id="info-details">
-        <li><a href="#">
-            <img id="info-company-img" src="https://cdn-sp.radionacional.com.ar/wp-content/uploads/2021/12/Diseno-sin-titulo-1-1.png">
-            <h2 id="info-company-name">Argentina Programa</h2></a>
-        </li>
-          
-      </ul>
+            <span>{{Person.ubicacion}}</span>            
+          </div>          
+      </div>       
+      
     </div>
 
     <div id="info-actions">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#tengoInteresEn">Tengo interés en</button>
-        <button type="button" class="btn btn-primary">Contacto</button>
-        <button type="button" class="btn btn-primary">Más</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#interes">Tengo interés en</button>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#contacto">Contacto</button>        
     </div>
     
 </div>
@@ -38,58 +32,81 @@
 <div class="card mat-card">
   <div class="card-titles">
       <h2 class="card-header">Acerca de mi</h2>
-      <div class="btn-edit"><a href="#" class="btn-right"><i class="fa fa-pen" onclick="showEditAboutModal()"></i></a></div>
+      <div class="btn-edit"><a href="#" class="btn-right"><i class="fa fa-pen"></i></a></div>
   </div>    
   <div id="about">
-    {{miPortfolio.about}}
+    <p>{{Person.acercade}}</p>
   </div>
 </div>
 
-<!-- Modal Edit Profile -->
-<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+
+<!--Modal NewPerson-->
+<div class="modal fade" id="myModalPerson" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Editar perfil</h5>
-        <button type="button" class="close" onclick="$('#editProfile').modal('hide');" aria-label="Close">
+        <h5 class="modal-title" id="myModalPerson">Agregar Perfil</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
+        <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
           <div class="form-group">
-              <label for="inputName">Nombre</label>
-              <input type="text" class="form-control" id="inputName" placeholder="Ingrese su nombre">
+              <label for="fullname">Nombre completo: </label>
+              <input type="text" class="form-control" id="fullname" name="fullname" [(ngModel)]="fullname" required>
           </div>
           <div class="form-group">
-              <label for="inputPosition">Posición</label>
-              <input type="text" class="form-control" id="inputPosition" placeholder="Tu posicion">
+              <label for="imgPerfil">Url Imagen Perfil</label>
+              <input type="text" class="form-control" id="imgPerfil" name="imgPerfil" [(ngModel)]="imgPerfil" required>
           </div>
           <div class="form-group">
-              <label for="inputCompany">Compañia</label>
-              <input type="text" class="form-control" id="inputCompany" placeholder="Ingrese la compania">
+            <label for="posicion">Posicion: </label>
+            <input type="text" class="form-control" id="posicion" name="posicion" [(ngModel)]="posicion" required>
           </div>
           <div class="form-group">
-              <label for="inputUbication">Ubicación</label>
-              <input type="text" class="form-control" id="inputUbication" placeholder="Ingrese su ubicacion">
+            <label for="ubicacion">Ubicacion: </label>
+            <input type="text" class="form-control" id="ubicacion" name="ubicacion" [(ngModel)]="ubicacion" required>
           </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" onclick="$('#editProfile').modal('hide');" >Cerrar</button>
-        <button type="button" class="btn btn-primary" onclick="saveEditProfileModal()">Guardar cambios</button>
-      </div>
+          <div class="form-group">
+            <label for="contacto">Contacto: </label>
+            <input type="text" class="form-control" id="contacto" name="contacto" [(ngModel)]="contacto" required>
+          </div>
+          <div class="form-group">
+            <label for="interes">Tengo interes en: </label>
+            <input type="text" class="form-control" id="interes" name="interes" [(ngModel)]="interes" required>
+          </div>
+          <div class="form-group">
+            <label for="acercade">Acerca de mi: </label>
+            <input type="text" class="form-control" id="acercade" name="acercade" [(ngModel)]="acercade" required>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Agregar Perfil</button>
+          </div>         
+        </form>
+      </div>      
     </div>
   </div>
 </div>
-<!-- Modal Tengo interes en-->
-<div class="modal fade" id="tengoInteresEn" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+
+
+
+
+<!-- Modal Tengo interes en -->
+<div class="modal fade" id="interes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 <div class="modal-dialog">
 <div class="modal-content">
 <div class="modal-header">
-  <h5 class="modal-title" id="exampleModalLabel">Tengo interes en</h5>
+  <h5 class="modal-title" id="interes">Tengo interes en: </h5>
   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body">
-  la mecanica cuantica
+  {{Person.interes}}
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
@@ -98,7 +115,28 @@
 </div>
 </div>
 </div>
-<!-- Modal Edit About -->
+
+<!-- Modal Contacto -->
+<div class="modal fade" id="contacto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title" id="contacto">Informacion de contacto: </h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    {{Person.contacto}}
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    <button type="button" class="btn btn-primary">Guardar cambios</button>
+  </div>
+  </div>
+  </div>
+  </div>
+
+
+<!-- Modal Edit About 
 <div class="modal fade" id="editAbout" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -121,3 +159,4 @@
     </div>
   </div>
 </div>
+-->

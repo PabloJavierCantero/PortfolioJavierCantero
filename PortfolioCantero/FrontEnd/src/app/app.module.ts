@@ -41,7 +41,7 @@ import { EditeducacionComponent } from './components/educacion/editeducacion.com
     AppRoutingModule,
     FormsModule
   ],
-  providers: [PortfolioService, interceptorProvider],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

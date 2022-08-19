@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { PortfolioService } from 'src/app/servicios/portfolio.service';
+import { Router } from '@angular/router';
+import { Person } from 'src/app/model/person';
+import { PersonService } from 'src/app/service/person.service';
+import { TokenService } from 'src/app/service/token.service';
+
 
 @Component({
   selector: 'app-profile',
@@ -7,14 +11,55 @@ import { PortfolioService } from 'src/app/servicios/portfolio.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  miPortfolio:any;
-  constructor(private datosPortfolio:PortfolioService) { }
+
+  person: Person[] = [];
+  fullname: string;
+  imgPerfil: string;
+  posicion: string;
+  ubicacion: string;
+  contacto: string;
+  interes: string;
+  acercade: string;
+
+  
+  constructor(private personS: PersonService, private tokenService: TokenService, private router: Router) { }
+
+  isLogged = false;
 
   ngOnInit(): void {
-    this.datosPortfolio.obtenerDatos().subscribe(data =>{
-      this.miPortfolio=data;
+    
+    this.cargarPerson();
+    if(this.tokenService.getToken()){
+      this.isLogged = true;      
+    } else {
+      this.isLogged = false;
+    }
 
-    });
+}
+
+cargarPerson(): void{
+  this.personS.lista().subscribe(data =>{this.person = data});
+}
+
+delete(id: number){
+  if(id != undefined){
+    this.personS.delete(id).subscribe(data => {this.cargarPerson()},
+    err =>{
+      alert("No se pudo borrar Persona");
+    }
+      )
   }
+}
+
+onCreate(): void{
+  const person = new Person(this.fullname, this.imgPerfil, this.posicion, this.ubicacion, this.contacto, this.interes, this.acercade);
+  this.personS.save(person).subscribe(data => {
+   alert("Persona creada correctamente");
+   this.router.navigate(['']);
+}, err => {
+  alert("Fallo la creacion de Persona");
+  this.router.navigate(['']);
+})
+}
 
 }

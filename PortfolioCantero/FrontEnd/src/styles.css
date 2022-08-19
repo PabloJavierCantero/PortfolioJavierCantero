@@ -1,9 +1,7 @@
 body{
     background-color: rgb(206, 213, 219);
 }
-#navbar-text{
-    padding-left: 50px;
-}
+
 .mat-card {
     border-radius: 32px;
     margin: 10px;
