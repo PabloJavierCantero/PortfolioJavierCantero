@@ -1,0 +1,83 @@
+<div class="container" *ngIf="hys">
+  <div class="row">
+    <div>
+      <form (ngSubmit)="onUpdate()" novalidate #f="ngForm">
+        <div class="form-group">
+          <label for="resolucion">Resolucion de problemas: </label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ingrese un numero del 1 al 100"
+            id="resolucion"
+            name="resolucion"
+            [(ngModel)]="hys.resolucion"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="gestion">Gestion del tiempo: </label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ingrese un numero del 1 al 100"
+            id="gestion"
+            name="gestion"
+            [(ngModel)]="hys.gestion"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="equipo">Trabajo en equipo: </label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ingrese un numero del 1 al 100"
+            id="equipo"
+            name="equipo"
+            [(ngModel)]="hys.equipo"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="habilidades">Habilidades informaticas: </label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ingrese un numero del 1 al 100"
+            id="habilidades"
+            name="habilidades"
+            [(ngModel)]="hys.habilidades"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="ingles">Ingles: </label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ingrese un numero del 1 al 100"
+            id="ingles"
+            name="ingles"
+            [(ngModel)]="hys.ingles"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="fullstack"
+            >Full Stack con Java, Spring Boot, Angular & Typescript:
+          </label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ingrese un numero del 1 al 100"
+            id="fullstack"
+            name="fullstack"
+            [(ngModel)]="hys.fullstack"
+            required
+          />
+        </div>
+        <button class="btn btn-primary">Editar Hard & Soft Skills</button>        
+      </form>
+    </div>
+  </div>
+</div>

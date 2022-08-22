@@ -1,18 +1,22 @@
 <div class="card mat-card">
   <div class="card-titles">
     <h2 class="card-header">Hard & Soft Skills</h2>
-    <div class="btn-edit">
-      <a href="#" class="btn-right"><i class="fa fa-plus"></i></a>
-    </div>
+    <div class="btn-edit" *ngIf="isLogged" >
+      <button type="button" class="btn btn-right" data-toggle="modal" data-target="#myModalHys" >
+        <i class="fa fa-plus"></i>
+      </button>      
+    </div>      
   </div>
-  <ol class="items-list">
+
+
+  <ol class="items-list" *ngFor="let Hys of hys">
     <li>
       <div class="aptitude-info" id="text-problemas">        
           <p><span>Resolución de problemas</span></p>
           <div class="progress">
-            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" [ngStyle]="{ 'width': Hys.resolucion + '%' }" [attr.aria-valuenow]="Hys.resolucion" aria-valuemin="0" aria-valuemax="100">
             
-              <span style="color: black">75%</span>
+              <span style="color: black">{{Hys.resolucion}}</span>
 
             </div>
           </div>
@@ -23,9 +27,9 @@
       <div class="aptitude-info" id="text-gestion">        
         <p><span>Gestión del tiempo</span></p>
         <div class="progress">
-          <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" [ngStyle]="{ 'width': Hys.gestion + '%' }" [attr.aria-valuenow]="Hys.gestion" aria-valuemin="0" aria-valuemax="100">
           
-            <span style="color: black">85%</span>
+            <span style="color: black">{{Hys.gestion}}</span>
 
           </div>
         </div>      
@@ -35,9 +39,9 @@
       <div class="aptitude-info" id="text-equipo">        
         <p><span>Trabajo en equipo</span></p>
         <div class="progress">
-          <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 70%" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" [ngStyle]="{ 'width': Hys.equipo + '%' }" [attr.aria-valuenow]="Hys.equipo" aria-valuemin="0" aria-valuemax="100">
           
-            <span style="color: black">70%</span>
+            <span style="color: black">{{Hys.equipo}}</span>
 
           </div>
         </div>      
@@ -47,9 +51,9 @@
       <div class="aptitude-info" id="text-habilidades">        
         <p><span>Habilidades informaticas</span></p>
         <div class="progress">
-          <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" [ngStyle]="{ 'width': Hys.habilidades + '%' }" [attr.aria-valuenow]="Hys.habilidades" aria-valuemin="0" aria-valuemax="100">
           
-            <span style="color: black">75</span>
+            <span style="color: black">{{Hys.habilidades}}</span>
 
           </div>
         </div>      
@@ -59,9 +63,9 @@
       <div class="aptitude-info" id="text-ingles">        
         <p><span>Ingles</span></p>
         <div class="progress">
-          <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" [ngStyle]="{ 'width': Hys.ingles + '%' }" [attr.aria-valuenow]="Hys.ingles" aria-valuemin="0" aria-valuemax="100">
           
-            <span style="color: black">60%</span>
+            <span style="color: black">{{Hys.ingles}}</span>
 
           </div>
         </div>      
@@ -71,13 +75,70 @@
       <div class="aptitude-info" id="text-fullstack">        
         <p><span>Full Stack con Java, Spring Boot, Angular & Typescript</span></p>
         <div class="progress">
-          <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">
+          <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" [ngStyle]="{ 'width': Hys.fullstack + '%' }" [attr.aria-valuenow]="Hys.fullstack" aria-valuemin="0" aria-valuemax="100">
           
-            <span style="color: black">80%</span>
+            <span style="color: black">{{Hys.fullstack}}</span>
 
           </div>
         </div>      
     </div>
     </li>
+    <li>
+      <div class="btn-edit" *ngIf="isLogged">
+        <button type="button" class="btn btn-right" routerLink="/edithys/{{Hys.id}}">
+          <i class="bi bi-pencil-fill"></i></button>
+        <button type="button" class="btn btn-right" (click)="delete(Hys.id)">
+          <i class="bi bi-trash-fill"></i></button>
+      </div>
+    </li>
   </ol>
 </div>
+
+<!--Modal NewHyS-->
+<div class="modal fade" id="myModalHys" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="myModalEduc">Agregar Hard & Soft Skills</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+          <div class="form-group">
+              <label for="resolucion">Resolucion de problemas: </label>
+              <input type="text" class="form-control" placeholder="Ingrese un numero del 1 al 100" id="resolucion" name="resolucion" [(ngModel)]="resolucion" required>
+          </div>
+          <div class="form-group">
+              <label for="gestion">Gestion del tiempo: </label>
+              <input type="text" class="form-control" placeholder="Ingrese un numero del 1 al 100" id="gestion" name="gestion" [(ngModel)]="gestion" required>
+          </div>
+          <div class="form-group">
+            <label for="equipo">Trabajo en equipo: </label>
+            <input type="text" class="form-control" placeholder="Ingrese un numero del 1 al 100" id="equipo" name="equipo" [(ngModel)]="equipo" required>
+          </div>
+          <div class="form-group">
+            <label for="habilidades">Habilidades informaticas: </label>
+            <input type="text" class="form-control" placeholder="Ingrese un numero del 1 al 100" id="habilidades" name="habilidades" [(ngModel)]="habilidades" required>
+          </div>
+          <div class="form-group">
+            <label for="ingles">Ingles: </label>
+            <input type="text" class="form-control" placeholder="Ingrese un numero del 1 al 100" id="ingles" name="ingles" [(ngModel)]="ingles" required>
+          </div>
+          <div class="form-group">
+            <label for="fullstack">Full Stack con Java, Spring Boot, Angular & Typescript: </label>
+            <input type="text" class="form-control" placeholder="Ingrese un numero del 1 al 100" id="fullstack" name="fullstack" [(ngModel)]="fullstack" required>
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <button type="submit" class="btn btn-primary">Agregar Hard & Soft Skills</button>
+          </div>         
+        </form>
+      </div>      
+    </div>
+  </div>
+</div>
+
+

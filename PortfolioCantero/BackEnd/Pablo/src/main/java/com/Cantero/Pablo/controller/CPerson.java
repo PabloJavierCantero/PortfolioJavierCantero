@@ -37,7 +37,7 @@ public class CPerson {
     @GetMapping("/detail/{id}")
     public ResponseEntity<Person> getById(@PathVariable("id") int id){
         if(!sPerson.existsById(id)){
-            return new ResponseEntity(new Mensaje("El Id de Person no existe"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("El Id de perfil no existe"), HttpStatus.BAD_REQUEST);
         }
         Person person = sPerson.getOne(id).get();
         return new ResponseEntity(person, HttpStatus.OK);
@@ -46,16 +46,16 @@ public class CPerson {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> delete(@PathVariable("id") int id){
         if(!sPerson.existsById(id)){
-            return new ResponseEntity(new Mensaje("El Id de person no existe"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity(new Mensaje("El Id de perfil no existe"), HttpStatus.NOT_FOUND);
         }
         sPerson.delete(id);
-        return new ResponseEntity(new Mensaje("Person fue eliminado"), HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("Perfil fue eliminado correctamente"), HttpStatus.OK);
     }
     
     @PostMapping("/create")
     public ResponseEntity<?> create(@RequestBody dtoPerson dtoperson){
         if(StringUtils.isBlank(dtoperson.getFullname())){
-            return new ResponseEntity(new Mensaje("El campo fullname es obligatorio"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("El campo Nombre completo es obligatorio"), HttpStatus.BAD_REQUEST);
         }
         if(sPerson.existsByFullname(dtoperson.getFullname())){
             return new ResponseEntity(new Mensaje("Este nombre ya existe"), HttpStatus.BAD_REQUEST);
@@ -64,19 +64,19 @@ public class CPerson {
         dtoperson.getContacto(), dtoperson.getInteres(), dtoperson.getAcercade());
         sPerson.save(person);
         
-        return new ResponseEntity(new Mensaje("Person creada correctamente"), HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("Perfil creado correctamente"), HttpStatus.OK);
     }
     
     @PutMapping("/update/{id}")
     public ResponseEntity<?> update(@PathVariable ("id") int id, @RequestBody dtoPerson dtoperson){
         if(!sPerson.existsById(id)){
-            return new ResponseEntity(new Mensaje("El id de person no existe"), HttpStatus.NOT_FOUND);
+            return new ResponseEntity(new Mensaje("El id de perfil no existe"), HttpStatus.NOT_FOUND);
         }     
         if(sPerson.existsByFullname(dtoperson.getFullname()) && sPerson.getByFullname(dtoperson.getFullname()).get().getId() != id){
-            return new ResponseEntity(new Mensaje("Ese nombre para person ya existe"), HttpStatus.BAD_REQUEST);            
+            return new ResponseEntity(new Mensaje("Ese nombre para perfil ya existe"), HttpStatus.BAD_REQUEST);            
         }
         if(StringUtils.isBlank(dtoperson.getFullname())){
-            return new ResponseEntity(new Mensaje("El campo fullname es obligatorio"), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity(new Mensaje("El campo Nombre completo es obligatorio"), HttpStatus.BAD_REQUEST);
         }
         
         Person person = sPerson.getOne(id).get();
@@ -89,7 +89,7 @@ public class CPerson {
         person.setAcercade(dtoperson.getAcercade());
         
         sPerson.save(person);
-        return new ResponseEntity(new Mensaje("Person actualizada correctamente"), HttpStatus.OK);
+        return new ResponseEntity(new Mensaje("Perfil actualizado correctamente"), HttpStatus.OK);
     }
     
 }
