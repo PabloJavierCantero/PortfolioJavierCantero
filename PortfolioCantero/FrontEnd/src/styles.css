@@ -18,14 +18,16 @@ body{
     z-index: 1;
 }
 #info-back-img{
-    height: 350px;
+    height: 500px;
+    max-width: 100%;
 }
 
 div#info-actions {
     display: flex;
+    padding-left: 10px;
 }
 div#info-actions button {
-    margin-right: 10px;
+    margin-right: 10px;    
 }
 div#info-contact span {
     font-size: 1rem;
@@ -52,6 +54,10 @@ div#info-data h1 {
     line-height: 1.25;
     word-wrap: break-word;
     word-break: break-word;
+    padding-left: 10px;
+}
+div#info-data span{
+    padding-left: 20px;    
 }
 div#info-data ul#info-details {
     width: 300px;
@@ -207,3 +213,4 @@ div#profile-background img {
 #text-resolucion{
     padding: 10px;
 }
+

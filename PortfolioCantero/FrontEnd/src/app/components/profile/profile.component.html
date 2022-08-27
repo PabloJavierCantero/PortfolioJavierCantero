@@ -1,6 +1,6 @@
 <div class="card mat-card" id="first-card">
     <div id="profile-background">
-      <img id="info-back-img" src="https://cdn.pixabay.com/photo/2019/04/10/11/56/watercolour-4116932_960_720.png">
+      <img id="info-back-img" class="img-fluid" src="https://cdn.pixabay.com/photo/2019/04/10/11/56/watercolour-4116932_960_720.png">
     </div>
     <div id="info" style="padding: 16px" *ngFor="let Person of person">
       <div id="info-img">
@@ -95,8 +95,8 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-primary">Agregar Perfil</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="location.reload()">Cerrar</button>
+            <button type="submit" class="btn btn-primary" onclick="location.reload()">Agregar Perfil</button>
           </div>         
         </form>
       </div>      

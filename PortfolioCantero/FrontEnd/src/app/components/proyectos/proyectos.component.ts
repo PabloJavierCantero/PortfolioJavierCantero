@@ -16,8 +16,10 @@ export class ProyectosComponent implements OnInit {
   descripcion: string;
   fecha: string;
   link: string;
+  
 
   constructor(private proyectoS: ProyectoService, private tokenService: TokenService, private router: Router) { }
+  
 
   isLogged = false;
 
@@ -53,5 +55,7 @@ export class ProyectosComponent implements OnInit {
       this.router.navigate(['']);
     })
   }
+
+  
 
 }

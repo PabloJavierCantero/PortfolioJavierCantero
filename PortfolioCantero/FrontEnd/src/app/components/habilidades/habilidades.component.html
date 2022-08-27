@@ -84,7 +84,7 @@
     </div>
     </li>
     <li>
-      <div class="btn-edit" *ngIf="isLogged">
+      <div class="btn-edit" id="btn-habilidad" *ngIf="isLogged">
         <button type="button" class="btn btn-right" routerLink="/edithys/{{Hys.id}}">
           <i class="bi bi-pencil-fill"></i></button>
         <button type="button" class="btn btn-right" (click)="delete(Hys.id)">
@@ -92,6 +92,7 @@
       </div>
     </li>
   </ol>
+  
 </div>
 
 <!--Modal NewHyS-->
@@ -132,8 +133,8 @@
           </div>
 
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-            <button type="submit" class="btn btn-primary">Agregar Hard & Soft Skills</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="location.reload()">Cerrar</button>
+            <button type="submit" class="btn btn-primary" onclick="location.reload()">Agregar Hard & Soft Skills</button>
           </div>         
         </form>
       </div>      
